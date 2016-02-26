@@ -1,5 +1,7 @@
 import scrapy
 
+from imdb.items import ImdbItem
+
 class ImdbSpider(scrapy.Spider):
     name = "imdb"
     allowed_domains = ["imdb.com/"]
