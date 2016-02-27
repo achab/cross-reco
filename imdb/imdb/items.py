@@ -14,4 +14,3 @@ class ImdbItem(scrapy.Item):
     person = scrapy.Field()
     person_id = scrapy.Field()
     films = scrapy.Field()
-    
