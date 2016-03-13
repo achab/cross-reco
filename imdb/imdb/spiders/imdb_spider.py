@@ -20,11 +20,11 @@ class ImdbSpider(CrawlSpider):
 
     def parse(self, response):
         s = Selector(response)
-        next_link = s.xpath('//*[@id="right"]/span/a/@href').extract()[0]
-        if len(next_link):
-            self.make_requests_from_url(next_link)
+        #next_link = s.xpath('//*[@id="right"]/span/a/@href').extract()[0]
+        #if len(next_link):
+        #    self.make_requests_from_url(next_link)
         movies = Selector(response).xpath('//*[@id="main"]/table//tr//td[@class="title"]')
-        for i, movie in enumerate(movies):
+        for movie in movies:
             item = ImdbItem()
             item['title'] = movie.xpath('a/text()').extract()[0]
             item['genres'] = movie.xpath('span[@class="genre"]/a/text()').extract()
@@ -33,6 +33,3 @@ class ImdbSpider(CrawlSpider):
             item['runtime'] = movie.xpath('span[@class="runtime"]/text()').extract()[0]
             item['imdbID'] = movie.xpath('a/@href').extract()[0][7:-1]
             yield item
-        #for href in response.xpath('//table[@class="splash"]/tr/td/a/@href'):
-        #    url = response.urljoin(href.extract())
-        #    yield Request(url, callback=self.parse_articles_follow_next_page)

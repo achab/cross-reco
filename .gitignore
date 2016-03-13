@@ -1,3 +1,4 @@
+*.jl
 *.ipynb
 *.json
 *.csv
