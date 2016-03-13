@@ -1,2 +1,7 @@
+*.ipynb
+*.json
+*.csv
+test_*
+data
 *.pyc
 .ipynb_checkpoints/
