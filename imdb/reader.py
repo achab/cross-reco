@@ -10,3 +10,5 @@ except:
     data = pd.read_json(data_json_str)
 
 print(data.head())
+print(" ")
+print(str(len(data)) + " movies scrapped")
