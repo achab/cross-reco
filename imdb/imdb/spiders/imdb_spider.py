@@ -7,7 +7,8 @@ from scrapy.selector import Selector
 class ImdbSpider(CrawlSpider):
     name = "ImdbSpider"
 #    allowed_domains = ["www.imdb.com/search/"]
-    start_urls =["http://www.imdb.com/search/title?year={},{}&title_type=feature&sort=moviemeter,asc".format(year, year) for year in range(1920,1930)]
+#    start_urls =["http://www.imdb.com/search/title?year={},{}&title_type=feature&sort=moviemeter,asc".format(year, year) for year in range(1920,1930)]
+    start_urls = ["http://www.imdb.com/search/title?year=2007,2007&title_type=feature&sort=moviemeter,asc"]
 #    custom_settings = {
 #            'BOT_NAME': 'imdb-crawler',
 #            'DEPTH_LIMIT': 5,
