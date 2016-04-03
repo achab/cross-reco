@@ -7,8 +7,8 @@ from scrapy.selector import Selector
 class ImdbSpider(CrawlSpider):
     name = "ImdbSpider"
 #    allowed_domains = ["www.imdb.com/search/"]
-#    start_urls =["http://www.imdb.com/search/title?year={},{}&title_type=feature&sort=moviemeter,asc".format(year, year) for year in range(1920,1930)]
-    start_urls = ["http://www.imdb.com/search/title?year=2007,2007&title_type=feature&sort=moviemeter,asc"]
+    start_urls =["http://www.imdb.com/search/title?year={},{}&title_type=feature&sort=moviemeter,asc".format(year, year) for year in range(1930,1940)]
+#    start_urls = ["http://www.imdb.com/search/title?year=1922,1922&title_type=feature&sort=moviemeter,asc"]
 #    custom_settings = {
 #            'BOT_NAME': 'imdb-crawler',
 #            'DEPTH_LIMIT': 5,
@@ -22,10 +22,22 @@ class ImdbSpider(CrawlSpider):
         movies = Selector(response).xpath('//*[@id="main"]/table//tr//td[@class="title"]')
         for movie in movies:
             item = ImdbItem()
-            item['title'] = movie.xpath('a/text()').extract()[0]
-            item['genres'] = movie.xpath('span[@class="genre"]/a/text()').extract()
-            item['year'] = movie.xpath('span[@class="year_type"]/text()').extract()[0][1:-1]
-            item['rating'] = movie.xpath('div[@class="user_rating"]/div[@class="rating rating-list"]/span[@class="rating-rating"]/span[@class="value"]/text()').extract()[0]
+            try:
+                item['title'] = movie.xpath('a/text()').extract()[0]
+            except:
+                item['title'] = 9999
+            try:
+                item['genres'] = movie.xpath('span[@class="genre"]/a/text()').extract()
+            except:
+                item['genres'] = 9999
+            try:
+                item['year'] = movie.xpath('span[@class="year_type"]/text()').extract()[0][1:-1]
+            except:
+                item['year'] = 9999
+            try:
+                item['rating'] = movie.xpath('div[@class="user_rating"]/div[@class="rating rating-list"]/span[@class="rating-rating"]/span[@class="value"]/text()').extract()[0]
+            except:
+                item['rating'] = 9999
             try:
                 item['runtime'] = movie.xpath('span[@class="runtime"]/text()').extract()[0]
             except:
