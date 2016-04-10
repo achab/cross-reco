@@ -1,6 +1,5 @@
 .DS_Store
 *.jl
-*.ipynb
 *.json
 *.csv
 test_*
