@@ -1,4 +1,4 @@
-# Recommender system, inspired by http://ampcamp.berkeley.edu/big-data-mini-course/movie-recommendation-with-mllib.html
+**Recommender system, inspired by http://ampcamp.berkeley.edu/big-data-mini-course/movie-recommendation-with-mllib.html**
 
 To compile the project, run
 ```
